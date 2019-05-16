@@ -45,46 +45,16 @@ class ProcurveDriver(NetworkDriver):
                  password,
                  timeout=60,
                  optional_args=None):
-        """Constructor."""
-        self.device = None
-        self.hostname = hostname
-        self.username = username
-        self.password = password
-        self.timeout = timeout
-
         if optional_args is None:
             optional_args = {}
-        self.transport = optional_args.get('transport', 'ssh')
+        self.transport = optional_args.pop('transport', 'ssh')
         self.hostname = hostname
         self.username = username
         self.password = password
         self.timeout = timeout
 
         # Netmiko possible arguments
-        netmiko_argument_map = {
-            'port': None,
-            'secret': '',
-            'verbose': False,
-            'keepalive': 30,
-            'global_delay_factor': 1,
-            'use_keys': False,
-            'key_file': None,
-            'ssh_strict': False,
-            'system_host_keys': False,
-            'alt_host_keys': False,
-            'alt_key_file': '',
-            'ssh_config_file': None,
-        }
-
-        # Build dict of any optional Netmiko args
-        self.netmiko_optional_args = {}
-        for k, v in netmiko_argument_map.items():
-            try:
-                self.netmiko_optional_args[k] = optional_args[k]
-            except KeyError:
-                pass
-        self.global_delay_factor = optional_args.get('global_delay_factor', 1)
-        self.port = optional_args.get('port', 22)
+        self.netmiko_optional_args = optional_args
 
         self.device = None
         self.config_replace = False
