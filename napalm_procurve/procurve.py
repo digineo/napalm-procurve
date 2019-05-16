@@ -20,18 +20,15 @@ Read https://napalm.readthedocs.io for more information.
 from __future__ import print_function
 from __future__ import unicode_literals
 
-import difflib
 import re
 import sys
 import socket
 import telnetlib
 
-from netmiko import ConnectHandler, FileTransfer, InLineTransfer
+from netmiko import ConnectHandler
 from napalm.base.base import NetworkDriver
 from napalm.base.exceptions import (
-    CommandErrorException,
     ConnectionClosedException,
-    ConnectionException,
 )
 
 from napalm.base.utils import py23_compat
