@@ -103,8 +103,6 @@ class ProcurveDriver(NetworkDriver):
             username=self.username,
             password=self.password,
             **self.netmiko_optional_args)
-        # ensure in enable mode
-        self.device.enable()
 
     def close(self):
         """Close the connection to the device."""
