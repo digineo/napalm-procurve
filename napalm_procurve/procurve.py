@@ -72,6 +72,7 @@ class ProcurveDriver(NetworkDriver):
             host=self.hostname,
             username=self.username,
             password=self.password,
+            timeout=self.timeout,
             **self.netmiko_optional_args)
 
     def close(self):
